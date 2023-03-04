@@ -223,6 +223,7 @@ main {
   border-radius: 16px;
   padding: 10px;
   color: whitesmoke;
+  cursor: default;
 }
 .details .top {
   display: flex;
