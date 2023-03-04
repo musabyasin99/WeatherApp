@@ -29,7 +29,7 @@ const getAnimation = (weather) => {
 const loaderAnimation = () => {
   setTimeout(() => {
     loader.style.display = "none";
-  }, 2000);
+  }, 4000);
 };
 const getWeather = (data) => {
   loaderAnimation();
@@ -57,6 +57,7 @@ const accessDenied = () => {
   */
 };
 const accessGranted = () => {
+  loaderAnimation();
   errorMsg.style.display = "none";
   report.style.display = "block";
   header.classList.remove("expand");
