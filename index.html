@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width
+    , initial-scale=1.0"
+    />
+    <link rel="icon" href="./assets/icons/misc/thunder.svg" />
+    <title>Weather App</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="loader">
+      <div class="circle"></div>
+      Loading
+    </div>
+    <header class="header">
+      <div class="logo">
+        <span class="icon"
+          ><img src="./assets/icons/day(static).svg" alt="" /></span
+        ><span class="text">Weather App</span>
+      </div>
+      <div class="search">
+        <img
+          width="50"
+          height="50"
+          style="
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+          "
+          src="./assets/icons/location.svg"
+          alt=""
+          class="searchIcon"
+        />
+      </div>
+      <form action="" class="searchForm">
+        <input
+          type="text"
+          class="field"
+          name="searchKey"
+          id="searchKey"
+          required
+          autocomplete="off"
+          placeholder="Enter location .."
+        />
+      </form>
+    </header>
+    <div class="searchResWrapper">
+      <ul class="searchRes">
+        <li class="item"></li>
+      </ul>
+    </div>
+    <main>
+      <div class="errMsg">
+        <img
+          src="./assets/icons/location.svg"
+          alt="animation"
+          class="errPoster"
+        />
+        <p class="msg">
+          Location Access Denied !<br />
+          Allow The To App Access Your Location Or Add Your Location Manually ..
+        </p>
+      </div>
+      <div class="reportWrapper">
+        <section class="mainRep">
+          <h2 class="location">N/A</h2>
+          <img class="weatherAnimation" src="" alt="animation" />
+          <div class="temprature">
+            <div class="group">
+              <div class="label">
+                Feels Like
+                <img src="./assets/icons/thermometer.svg" alt="" class="icon" />
+              </div>
+              <p class="feels">N/A</p>
+            </div>
+            <div class="group">
+              <p class="main">N/A</p>
+            </div>
+            <div class="group">
+              <div class="label">
+                Humidity
+                <img src="./assets/icons/humidity.svg" alt="" class="icon" />
+              </div>
+              <p class="humidity">N/A</p>
+            </div>
+          </div>
+          <p class="weather">N/A</p>
+        </section>
+        <section class="details">
+          <div class="top">
+            <div class="item">
+              <div class="label">
+                <span class="text">Sunrise</span>
+                <img
+                  src="./assets/icons/misc/weather_sunset.svg"
+                  alt=""
+                  class="icon"
+                />
+              </div>
+              <p class="sunrise">N/A</p>
+            </div>
+            <div class="item">
+              <div class="label">
+                <span class="text">Sunset</span>
+                <img
+                  src="./assets/icons/misc/weather_sunset.svg"
+                  alt=""
+                  class="icon"
+                />
+              </div>
+              <p class="sunset">N/A</p>
+            </div>
+          </div>
+          <div class="other">
+            <div class="item el">
+              <div class="label">
+                <span class="text">Min</span>
+                <img src="./assets/icons/thermometer.svg" alt="" class="icon" />
+              </div>
+              <p class="min">N/A</p>
+            </div>
+            <div class="item el">
+              <div class="label">
+                <span class="text">Max</span>
+                <img src="./assets/icons/thermometer.svg" alt="" class="icon" />
+              </div>
+              <p class="max">N/A</p>
+            </div>
+            <div class="item el">
+              <div class="label">
+                <span class="text">Pressure</span>
+                <img src="./assets/icons/pressure.svg" alt="" class="icon" />
+              </div>
+              <p class="pressure">N/A</p>
+            </div>
+            <div class="item el">
+              <div class="label">
+                <span class="text">Wind Speed</span>
+                <img src="./assets/icons/wind.svg" alt="" class="icon" />
+              </div>
+              <p class="wind">N/A</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <footer>Copyright &nbsp;<small>&copy; 2023 </small></footer>
+  </body>
+  <script src="./script.js"></script>
+</html>
