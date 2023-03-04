@@ -27,6 +27,7 @@ const getAnimation = (weather) => {
   }
 };
 const loaderAnimation = () => {
+  loader.style.display = "flex";
   setTimeout(() => {
     loader.style.display = "none";
   }, 4000);
@@ -85,7 +86,7 @@ window.addEventListener("load", async (e) => {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(getLocation, console.log);
   }
-  if (GeolocationPositionError.PERMISSION_DENIED) {
+  if (GeolocationPositionError.PERMISSION_DENIED == "1") {
     accessDenied();
   } else {
     accessGranted();
@@ -110,7 +111,6 @@ searchForm.addEventListener("submit", async (e) => {
         if (data.cod == "404") {
           notFound();
         } else {
-          loaderAnimation();
           getWeather(data);
         }
       });
