@@ -273,6 +273,7 @@ main {
   background: #05020252;
   border-radius: 12px;
   font-size: 0.8rem;
+  margin: 4px;
 }
 footer {
   position: relative;
