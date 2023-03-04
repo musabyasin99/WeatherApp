@@ -110,6 +110,7 @@ searchForm.addEventListener("submit", async (e) => {
         if (data.cod == "404") {
           notFound();
         } else {
+          loaderAnimation();
           getWeather(data);
         }
       });
