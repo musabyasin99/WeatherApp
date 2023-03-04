@@ -57,7 +57,6 @@ const accessDenied = () => {
   */
 };
 const accessGranted = () => {
-  loaderAnimation();
   errorMsg.style.display = "none";
   report.style.display = "block";
   header.classList.remove("expand");
