@@ -65,7 +65,7 @@ const accessDenied = () => {
     report.style.display = "none";
     header.classList.add("expand");
     searchForm.classList.add("open");
-  }, 8000);
+  }, 10000);
 };
 const accessGranted = () => {
   loaderAnimation();
@@ -95,11 +95,6 @@ const notFound = () => {
 window.addEventListener("load", async (e) => {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(getLocation, console.log);
-  }
-  if (GeolocationPositionError.PERMISSION_DENIED == "1") {
-    accessDenied();
-  } else {
-    accessGranted();
   }
 });
 
