@@ -11,6 +11,16 @@ const animation = document.querySelector(".weatherAnimation");
 const API_KEY = "1bd9d99c41a87dd60a14cf24c90be04e";
 const GEO_API = "dfe46633243e4b50b632c4483936d5a5";
 
+const logo = document.querySelector(".logo");
+const logoIcon = logo.querySelector(".icon");
+
+logo.addEventListener("mouseover", () => {
+  logoIcon.querySelector("img").src = `./assets/icons/misc/day.svg`;
+});
+logo.addEventListener("mouseleave", () => {
+  logoIcon.querySelector("img").src = `./assets/icons/day(static).svg`;
+});
+
 const getAnimation = (weather) => {
   if (weather == "Clear") {
     animation.src = `./assets/icons/misc/day.svg`;
@@ -50,12 +60,12 @@ const getWeather = (data) => {
 };
 const accessDenied = () => {
   loaderAnimation();
-  errorMsg.style.display = "flex";
-  report.style.display = "none";
-  /*
-  header.classList.add("expand");
-  searchForm.classList.add("open");
-  */
+  setTimeout(() => {
+    errorMsg.style.display = "flex";
+    report.style.display = "none";
+    header.classList.add("expand");
+    searchForm.classList.add("open");
+  }, 8000);
 };
 const accessGranted = () => {
   loaderAnimation();
