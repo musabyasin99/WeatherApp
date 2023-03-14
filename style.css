@@ -55,6 +55,62 @@ header {
   justify-content: flex-start;
   align-items: center;
 }
+
+/*  Toggle Switch  */
+
+.switch {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: inline-block;
+  width: 3.8rem;
+  height: 2rem;
+}
+.switch__input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.switch__slider {
+  position: absolute;
+  inset: 0;
+  background: #ff4754;
+  border-radius: 1rem;
+  z-index: 10;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+.switch__slider::before {
+  content: attr(data-value);
+  position: absolute;
+  left: 0.2rem;
+  top: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(-50%);
+  height: 1.6rem;
+  width: 1.6rem;
+  border-radius: 1.6rem;
+  background: black;
+  color: white;
+  transition: transform 0.2s, width 0.2s, background 0.2s;
+}
+.switch__input:checked + .switch__slider {
+  background: orangered;
+}
+.switch__input:not(:checked):active + .switch__slider::before {
+  width: 2.4rem;
+}
+.switch__input:checked:active + .switch__slider::before {
+  transform: translate(1rem, -50%);
+  width: 2.4rem;
+}
+.switch__input:checked + .switch__slider::before {
+  transform: translate(1.8rem, -50%);
+}
+
+/*  TS End  */
 .loader {
   position: fixed;
   top: 0;

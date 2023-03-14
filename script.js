@@ -13,6 +13,8 @@ const animation = document.querySelector(".weatherAnimation");
 const API_KEY = "1bd9d99c41a87dd60a14cf24c90be04e";
 const GEO_API = "dfe46633243e4b50b632c4483936d5a5";
 
+const unitToggle = document.querySelector(".switch__input");
+
 logo.addEventListener("mouseover", () => {
   logoIcon.querySelector("img").src = `./assets/icons/misc/day.svg`;
 });
@@ -43,10 +45,44 @@ const loaderAnimation = () => {
     loader.style.display = "none";
   }, 4000);
 };
-const unitCoversion = async () => {
-  console.log((13 * 9) / 5 + 32);
+
+const unitConversion = (data) => {
+  return (data * 9) / 5 + 32;
 };
-unitCoversion();
+
+const unitMode = async (data) => {
+  unitToggle.addEventListener("click", (e) => {
+    if (unitToggle.value == "C") {
+      document.querySelector(".switch__slider").setAttribute("data-value", "F");
+      unitToggle.value = "F";
+      document.querySelector(".feels").innerHTML = `${Math.round(
+        unitConversion(data.main.feels_like)
+      )}°F`;
+      document.querySelector(".mainTemp").innerHTML =
+        Math.round(unitConversion(data.main.temp)) + "°F";
+      document.querySelector(".min").innerHTML = `${Math.floor(
+        unitConversion(data.main.temp_min)
+      )}°F`;
+      document.querySelector(".max").innerHTML = `${Math.ceil(
+        unitConversion(data.main.temp_max)
+      )}°F`;
+    } else {
+      unitToggle.value = "C";
+      document.querySelector(".switch__slider").setAttribute("data-value", "C");
+      document.querySelector(".feels").innerHTML = `${Math.round(
+        data.main.feels_like
+      )}°C`;
+      document.querySelector(".mainTemp").innerHTML =
+        Math.round(data.main.temp) + "°C";
+      document.querySelector(".min").innerHTML = `${Math.floor(
+        data.main.temp_min
+      )}°C`;
+      document.querySelector(".max").innerHTML = `${Math.ceil(
+        data.main.temp_max
+      )}°C`;
+    }
+  });
+};
 const getWeather = (data) => {
   loaderAnimation();
   errorMsg.style.display = "none";
@@ -54,13 +90,21 @@ const getWeather = (data) => {
   document.querySelector(".location").innerHTML = `
     ${data.name} (${data.sys.country})`;
   getAnimation(data.weather[0].main);
-  document.querySelector(".weather").innerHTML = data.weather[0].main;
-  document.querySelector(".feels").innerHTML = `${data.main.feels_like}°C`;
+  unitToggle.value = "C";
+  document.querySelector(".feels").innerHTML = `${Math.round(
+    data.main.feels_like
+  )}°C`;
   document.querySelector(".mainTemp").innerHTML =
     Math.round(data.main.temp) + "°C";
+  document.querySelector(".min").innerHTML = `${Math.floor(
+    data.main.temp_min
+  )}°C`;
+  document.querySelector(".max").innerHTML = `${Math.ceil(
+    data.main.temp_max
+  )}°C`;
+  unitMode(data);
+  document.querySelector(".weather").innerHTML = data.weather[0].main;
   document.querySelector(".humidity").innerHTML = `${data.main.humidity}%`;
-  document.querySelector(".min").innerHTML = `${data.main.temp_min}°C`;
-  document.querySelector(".max").innerHTML = `${data.main.temp_max}°C`;
   document.querySelector(".pressure").innerHTML = `${data.main.pressure} bar`;
   document.querySelector(".wind").innerHTML = `${data.wind.speed} km/h`;
 };
