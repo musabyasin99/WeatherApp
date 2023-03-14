@@ -65,6 +65,7 @@ header {
   display: inline-block;
   width: 3.8rem;
   height: 2rem;
+  z-index: 5;
 }
 .switch__input {
   opacity: 0;
@@ -74,7 +75,7 @@ header {
 .switch__slider {
   position: absolute;
   inset: 0;
-  background: #ff4754;
+  background: linear-gradient(to left, #103ce7, #64e9ff);
   border-radius: 1rem;
   z-index: 10;
   transition: background 0.2s;
@@ -97,7 +98,7 @@ header {
   transition: transform 0.2s, width 0.2s, background 0.2s;
 }
 .switch__input:checked + .switch__slider {
-  background: orangered;
+  background: linear-gradient(to right, #64e9ff, #103ce7);
 }
 .switch__input:not(:checked):active + .switch__slider::before {
   width: 2.4rem;
@@ -147,6 +148,7 @@ header {
 }
 .search .searchIcon {
   display: none;
+  cursor: pointer;
 }
 .searchForm {
   position: absolute;

@@ -29,7 +29,7 @@ const getAnimation = (weather) => {
     animation.src = `./assets/icons/misc/day.svg`;
   } else if (weather == "Clouds") {
     animation.src = `./assets/icons/cloudy/cloudy.svg`;
-  } else if (weather == "Rainy") {
+  } else if (weather == "Rain") {
     animation.src = `./assets/icons/rainy/rainy-7.svg`;
   } else if (weather == "Thunder") {
     animation.src = `./assets/icons/misc/thunder.svg`;
@@ -50,7 +50,7 @@ const unitConversion = (data) => {
   return (data * 9) / 5 + 32;
 };
 
-const unitMode = async (data) => {
+const unitModeToggle = async (data) => {
   unitToggle.addEventListener("click", (e) => {
     if (unitToggle.value == "C") {
       document.querySelector(".switch__slider").setAttribute("data-value", "F");
@@ -83,6 +83,34 @@ const unitMode = async (data) => {
     }
   });
 };
+const unitModeLoad = async (data) => {
+  if (unitToggle.value == "F") {
+    document.querySelector(".feels").innerHTML = `${Math.round(
+      unitConversion(data.main.feels_like)
+    )}°F`;
+    document.querySelector(".mainTemp").innerHTML =
+      Math.round(unitConversion(data.main.temp)) + "°F";
+    document.querySelector(".min").innerHTML = `${Math.floor(
+      unitConversion(data.main.temp_min)
+    )}°F`;
+    document.querySelector(".max").innerHTML = `${Math.ceil(
+      unitConversion(data.main.temp_max)
+    )}°F`;
+  } else {
+    document.querySelector(".feels").innerHTML = `${Math.round(
+      data.main.feels_like
+    )}°C`;
+    document.querySelector(".mainTemp").innerHTML =
+      Math.round(data.main.temp) + "°C";
+    document.querySelector(".min").innerHTML = `${Math.floor(
+      data.main.temp_min
+    )}°C`;
+    document.querySelector(".max").innerHTML = `${Math.ceil(
+      data.main.temp_max
+    )}°C`;
+  }
+};
+
 const getWeather = (data) => {
   loaderAnimation();
   errorMsg.style.display = "none";
@@ -90,19 +118,8 @@ const getWeather = (data) => {
   document.querySelector(".location").innerHTML = `
     ${data.name} (${data.sys.country})`;
   getAnimation(data.weather[0].main);
-  unitToggle.value = "C";
-  document.querySelector(".feels").innerHTML = `${Math.round(
-    data.main.feels_like
-  )}°C`;
-  document.querySelector(".mainTemp").innerHTML =
-    Math.round(data.main.temp) + "°C";
-  document.querySelector(".min").innerHTML = `${Math.floor(
-    data.main.temp_min
-  )}°C`;
-  document.querySelector(".max").innerHTML = `${Math.ceil(
-    data.main.temp_max
-  )}°C`;
-  unitMode(data);
+  unitModeLoad(data);
+  unitModeToggle(data);
   document.querySelector(".weather").innerHTML = data.weather[0].main;
   document.querySelector(".humidity").innerHTML = `${data.main.humidity}%`;
   document.querySelector(".pressure").innerHTML = `${data.main.pressure} bar`;
@@ -171,6 +188,8 @@ searchForm.addEventListener("submit", async (e) => {
           notFound();
         } else {
           getWeather(data);
+          unitModeLoad(data);
+          unitModeToggle(data);
         }
       });
     searchKey.value = "";
