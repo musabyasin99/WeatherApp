@@ -110,8 +110,18 @@ const unitModeLoad = async (data) => {
     )}°C`;
   }
 };
-
-const getWeather = (data) => {
+const timeCalculation = async (data, el) => {
+  const timestamp = new Date(data * 1000);
+  let hours = timestamp.getHours();
+  let mins = timestamp.getMinutes();
+  let ampm = hours >= 12 ? "PM" : "AM";
+  hours = hours % 12;
+  hours = hours ? hours : 12;
+  mins = mins < 10 ? "0" + mins : mins;
+  const time = `${hours}:${mins} ${ampm}`;
+  document.querySelector(`${el}`).innerHTML = `${time}`;
+};
+const getWeather = async (data) => {
   loaderAnimation();
   errorMsg.style.display = "none";
   report.style.display = "block";
@@ -124,6 +134,8 @@ const getWeather = (data) => {
   document.querySelector(".humidity").innerHTML = `${data.main.humidity}%`;
   document.querySelector(".pressure").innerHTML = `${data.main.pressure} bar`;
   document.querySelector(".wind").innerHTML = `${data.wind.speed} km/h`;
+  timeCalculation(data.sys.sunrise, ".sunrise");
+  timeCalculation(data.sys.sunset, ".sunset");
 };
 const accessDenied = () => {
   loaderAnimation();
